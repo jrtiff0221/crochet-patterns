@@ -1,5 +1,5 @@
 <h1>Here are all your crochet patterns! </h1>
 
 <% @crochet_patterns.each do |crochet_pattern| %>
-  <h2><a href="crochet-patterns/<%crochet_pattern.id%>"><%crochet_pattern.title %></a></h2>
+  <h2><a href="crochet-patterns/<%=crochet_pattern.id%>"><%= crochet_pattern.title %></a></h2>
 <% end%>

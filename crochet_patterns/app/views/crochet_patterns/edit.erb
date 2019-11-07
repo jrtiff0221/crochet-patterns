@@ -1,0 +1,17 @@
+<h1>Edit your submission!</h1>
+
+<form method="post" action="/crochet-patterns/<%= @crochet_pattern.id %>">
+ 
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  
+  <select name="user_id"> 
+    <% @users.each do |user|%>
+      <option value="<%= user.id %>"> <%= user.name %> </option>
+    <% end %>
+  </select>
+  
+  <input type="text" id="title" name="title" value="<%=@crochet_pattern.title%>">
+  <textarea id="body" name="body"><%= @crochet_pattern.body%> </textarea>
+  
+  <input type="submit">
+</form>
