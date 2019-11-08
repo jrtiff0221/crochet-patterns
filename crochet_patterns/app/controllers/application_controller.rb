@@ -5,47 +5,22 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    enable :sessions
+    set :session_secret, "yarn"
   end
 
+ 
   get "/" do
-    @crochet_patterns = CrochetPattern.all
-    erb :"crochet_patterns/index"
+    erb :'sessions/login'
   end
 
-  get '/crochet-patterns/new' do
-    @users = User.all
-    erb :"crochet_patterns/new"
-  end
+  helpers do
+    def logged_in?
+      session[:user_id]
+    end
 
-  get '/crochet-patterns/edit/:id' do
-    @users = User.all
-    @crochet_pattern = CrochetPattern.find_by_id(params["id"])
-    erb :"crochet_patterns/edit"
-  end
-  
-  patch '/crochet-patterns/:id' do 
-    @crochet_pattern = CrochetPattern.find_by_id(params["id"])
-    params.delete("_method")
-
-    if @crochet_pattern.update(params)
-      redirect "crochet-patterns/#{@crochet_pattern.id}"
-    else
-      redirect "crochet-patterns/#{@crochet_pattern.id}/edit"
+    def current_user
+      @user ||= User.find_by(id: session[:user_id])
     end
   end
-
-  get '/crochet-patterns/:id' do
-    @crochet_pattern = CrochetPattern.find_by_id(params["id"])
-    erb :"crochet_patterns/show"
-  end
-
-  post '/crochet-patterns' do 
-    crochet_pattern = CrochetPattern.new(params)
-    if crochet_pattern.save
-      redirect "crochet-patterns/#{crochet_pattern.id}"
-    else
-      redirect "crochet-patterns/new"
-    end
-  end
-
 end
