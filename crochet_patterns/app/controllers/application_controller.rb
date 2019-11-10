@@ -11,6 +11,9 @@ class ApplicationController < Sinatra::Base
 
  
   get "/" do
+    if logged_in?
+      redirect "crochet-patterns"
+    end
     erb :'sessions/login'
   end
 

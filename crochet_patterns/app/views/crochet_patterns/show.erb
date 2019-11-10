@@ -1,11 +1,17 @@
+<form class="header" method="post" action="/logout">
+  <input type="hidden" id="hidden" name="_method" value="delete">
+  <a class="blue" href="/crochet-patterns">Home</a>&nbsp;&nbsp;<a class="blue" href="/crochet-patterns/new">Create</a>&nbsp;&nbsp;<a class="blue" href="/crochet-patterns/edit/<%= @crochet_pattern.id %>">Edit</a>&nbsp;&nbsp;<button class="link-button" type="delete" formaction="logout">Logout</button>
+</form>
+<hr>
+<br>
 <h2>Title: <%= @crochet_pattern.title %> </h2>
-<p> <%= @crochet_pattern.body %><p>
-<%# <a href="<%= @crochet_pattern.link" target="_blank">Pattern Link</a> %> 
-
-<h2>Would you like to delete your submission?</h2>
+<h3>Size: <%= @crochet_pattern.size %></h3>
+<h3>Description:</h3>
+<p><%= @crochet_pattern.body %><p>
+<h3><a class="button" href="<%= @crochet_pattern.link%>" target="_blank">Pattern Link</a></h3>
+<br />
 
 <form method="post" action="/crochet-patterns/<%= @crochet_pattern.id %>">
- 
   <input type="hidden" id="hidden" name="_method" value="delete">
-  <input type="submit" value="delete">
+  <button class="button" type="submit" value="delete">Delete Submission</button>
 </form>

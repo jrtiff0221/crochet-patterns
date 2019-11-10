@@ -1,17 +1,35 @@
-<h1>Edit your submission!</h1>
+<form class="header" method="post" action="/logout">
+  <input type="hidden" id="hidden" name="_method" value="delete">
+  <a class="blue" href="/crochet-patterns">Home</a>&nbsp;&nbsp;<a class="blue" href="/crochet-patterns/new">Create</a>&nbsp;&nbsp;<button class="link-button" type="delete" formaction="logout">Logout</button>
+</form>
+<hr>
+<br>
 
+<h1>Edit your submission!</h1>
 <form method="post" action="/crochet-patterns/<%= @crochet_pattern.id %>">
- 
-  <input type="hidden" id="hidden" name="_method" value="patch">
-  
-  <select name="user_id"> 
-    <% @users.each do |user|%>
-      <option value="<%= user.id %>"> <%= user.name %> </option>
-    <% end %>
-  </select>
-  
-  <input type="text" id="title" name="title" value="<%=@crochet_pattern.title%>">
-  <textarea id="body" name="body"><%= @crochet_pattern.body%> </textarea>
-  
-  <input type="submit">
+  <div class="form-container">
+    <input type="hidden" id="hidden" name="_method" value="patch">
+
+    <label for="title">Title: </label>
+    <input name="title" value="<%=@crochet_pattern.title%>" /> 
+    <br />
+    <br />
+    <label for="size">Size: </label>
+    <select name="size"> 
+      <% @@sizes.each do |size|%>
+        <option value="<%= size %>"> <%= size %> </option>
+      <% end %>
+    </select>
+    <br />
+    <br />
+    <label for="body">Description: </label>
+    <textarea name="body"><%= @crochet_pattern.body%></textarea>
+    <br />
+    <br />
+    <label for="link">Pattern Link: </label>
+    <input name="link" value="<%=@crochet_pattern.link%>" />
+    <br />
+    <br />
+    <button class="button" type="submit">Submit</button>
+  </div>
 </form>

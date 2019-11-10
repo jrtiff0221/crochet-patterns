@@ -1,5 +1,11 @@
-<h1>Here are all your crochet patterns! </h1>
+<form class="header" method="post" action="/logout">
+  <input type="hidden" id="hidden" name="_method" value="delete">
+  <a class="blue" href="/crochet-patterns">Home</a>&nbsp;&nbsp;<a class="blue" href="/crochet-patterns/new">Create</a>&nbsp;&nbsp;<button class="link-button" type="delete" formaction="logout">Logout</button>
+</form>
+<hr>
+<br>
+<h2>Here are all your crochet patterns! </h2>
 
 <% @crochet_patterns.each do |crochet_pattern| %>
-  <h2><a href="crochet-patterns/<%=crochet_pattern.id%>"><%= crochet_pattern.title %></a></h2>
+  <h3><a class="no-underline list-link" href="/crochet-patterns/<%=crochet_pattern.id%>"><%= crochet_pattern.title %></a></h3>
 <% end%>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191108002938) do
+ActiveRecord::Schema.define(version: 20191110203309) do
 
   create_table "crochet_patterns", force: :cascade do |t|
     t.string   "title"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20191108002938) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "link"
+    t.string   "size"
   end
 
   create_table "users", force: :cascade do |t|
